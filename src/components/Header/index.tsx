@@ -1,16 +1,14 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {Header} from '../../components';
 
 import {Container} from './styles';
 
-const Home: React.FC = () => {
+const Header: React.FC = () => {
   return (
     <Container>
-      <Header />
-      <Text>Teste</Text>
+      <Text>Title page</Text>
     </Container>
   );
 };
 
-export default Home;
+export default Header;
