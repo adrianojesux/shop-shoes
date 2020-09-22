@@ -12,14 +12,22 @@ import {
   ProductPrice,
 } from './styles';
 import theme from '../../utils/theme';
+import {useNavigation} from '@react-navigation/native';
+import route_names from '../../utils/route_names';
 
 interface CardProductProps {
   product: Product;
 }
 
 const CardProduct: React.FC<CardProductProps> = ({product}) => {
+  const navigation = useNavigation();
+
+  function handleOpenPageDetail() {
+    navigation.navigate(route_names.DETAILS, {product_id: product.id});
+  }
+
   return (
-    <Container>
+    <Container onPress={handleOpenPageDetail}>
       <ImageContent>
         <Image
           source={{uri: product.principal_image}}

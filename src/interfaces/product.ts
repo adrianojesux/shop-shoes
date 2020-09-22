@@ -1,4 +1,5 @@
 export interface Product {
+  id?: number;
   principal_image: string;
   other_images?: Array<string>;
   product_name: string;

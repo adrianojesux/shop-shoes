@@ -2,7 +2,7 @@ import {Dimensions} from 'react-native';
 import theme from './../../utils/theme';
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
   margin: 16px 8px;
   flex: 1;
 `;

@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {FlatList, TouchableOpacity, ScrollView} from 'react-native';
+import React, {useCallback, useEffect, useState} from 'react';
+import {FlatList, Keyboard, ScrollView} from 'react-native';
 import {Picker} from '@react-native-community/picker';
 
 import {Header, CardProduct} from '../../components';
@@ -8,9 +8,14 @@ import ProductService from './../../services/productsService';
 
 import {Container, Sorter, SorterTitle} from './styles';
 import theme from './../../utils/theme';
+import {useNavigation} from '@react-navigation/native';
 
 const Home: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [productsFiltered, setProductsFiltered] = useState<Product[]>([]);
+  const [searching, setSearching] = useState<boolean>();
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     const productList = ProductService.getProducts();
@@ -18,32 +23,68 @@ const Home: React.FC = () => {
     if (productList) setProducts(productList);
   }, []);
 
+  const handleNavigateToCart = useCallback(() => {
+    navigation.navigate('cart');
+  }, []);
+
+  const handleOnSearch = useCallback((query: string) => {
+    if (!!query && query.trim() === '') {
+      setSearching(false);
+      return;
+    }
+    setSearching(true);
+    const productList = ProductService.findByName(query);
+    setProductsFiltered(productList);
+  }, []);
+
+  const handleOnCloseSearch = useCallback(() => {
+    setSearching(false);
+    Keyboard.dismiss();
+  }, []);
+
   return (
     <Container>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Header />
-        <Sorter>
-          <SorterTitle>Ordernado por:</SorterTitle>
-          <Picker
-            selectedValue={'Menor preço'}
-            style={{
-              height: 50,
-              width: 180,
-              fontFamily: 'Montserrat-Regular',
-              fontSize: 12,
-            }}
-            onValueChange={(value, index) => {
-              console.log(value);
-            }}>
-            <Picker.Item label="Menor Preço" value="meno-preco" />
-          </Picker>
-        </Sorter>
-        {products && (
+        <Header
+          onNavToCart={handleNavigateToCart}
+          onSearch={handleOnSearch}
+          onCloseSearch={handleOnCloseSearch}
+        />
+        {products && !searching && (
+          <>
+            <Sorter>
+              <SorterTitle>Ordernado por:</SorterTitle>
+              <Picker
+                selectedValue={'Menor preço'}
+                style={{
+                  height: 50,
+                  width: 180,
+                  fontFamily: 'Montserrat-Regular',
+                  fontSize: 12,
+                }}
+                onValueChange={(value, index) => {
+                  console.log(value);
+                }}>
+                <Picker.Item label="Menor Preço" value="meno-preco" />
+              </Picker>
+            </Sorter>
+            <FlatList
+              key="product-list"
+              data={products}
+              numColumns={2}
+              keyExtractor={(item) => String(item.id)}
+              renderItem={({item}) => <CardProduct product={item} />}
+              showsVerticalScrollIndicator={false}
+              onEndReachedThreshold={0.2}
+              contentContainerStyle={{paddingBottom: 5}}
+            />
+          </>
+        )}
+        {searching && (
           <FlatList
             key="product-list"
-            data={products}
-            numColumns={2}
-            keyExtractor={(item) => String(item.product_name)}
+            data={productsFiltered}
+            keyExtractor={(item) => String(item.id)}
             renderItem={({item}) => <CardProduct product={item} />}
             showsVerticalScrollIndicator={false}
             onEndReachedThreshold={0.2}
