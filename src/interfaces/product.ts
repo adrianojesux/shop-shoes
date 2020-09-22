@@ -1,12 +1,12 @@
 export interface Product {
   principal_image: string;
-  other_images: Array<string>;
+  other_images?: Array<string>;
   product_name: string;
   product_description: string;
   price: string | number;
   sale_price?: string;
-  evaluations: Array<Evaluation>;
-  comments: Array<Comment>;
+  evaluations?: Array<Evaluation>;
+  comments?: Array<Comment>;
 }
 
 export interface Comment {
