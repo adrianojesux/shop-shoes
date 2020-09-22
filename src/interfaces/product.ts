@@ -4,8 +4,8 @@ export interface Product {
   other_images?: Array<string>;
   product_name: string;
   product_description: string;
-  price: string | number;
-  sale_price?: string;
+  price: number;
+  sale_price?: number;
   evaluations?: Array<Evaluation>;
   comments?: Array<Comment>;
 }

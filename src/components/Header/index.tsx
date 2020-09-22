@@ -68,10 +68,10 @@ const Header: React.FC<HeaderProps> = ({
           <TitleApp>ShopShoes</TitleApp>
           <HeaderActions>
             <HeaderButton onPress={handleOpenSearchInput}>
-              <MDIcon name="magnify" color={theme.darkOrange} size={30} />
+              <MDIcon name="magnify" color={theme.primary} size={30} />
             </HeaderButton>
             <HeaderButton onPress={handlePressToCart}>
-              <MDIcon name="cart-outline" color={theme.darkOrange} size={30} />
+              <MDIcon name="cart-outline" color={theme.primary} size={30} />
             </HeaderButton>
           </HeaderActions>
         </>

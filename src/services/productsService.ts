@@ -6,6 +6,7 @@ const products: Product[] = [
     product_name: 'Tenis Adidas',
     product_description: 'Tenis de alta qualidade para os melhores clientes.',
     price: '150.50',
+    sale_price: '120.50',
     principal_image:
       'https://static.netshoes.com.br/produtos/tenis-de-caminhada-leve-confortavel/06/E74-0492-006/E74-0492-006_zoom1.jpg?ts=1586961574&ims=544x',
     other_images: [
@@ -13,7 +14,16 @@ const products: Product[] = [
       'https://static.netshoes.com.br/produtos/tenis-de-caminhada-leve-confortavel/06/E74-0492-006/E74-0492-006_zoom1.jpg?ts=1586961574&ims=544x',
     ],
     evaluations: [],
-    comments: [],
+    comments: [
+      {
+        author_name: 'Carlos Eduardo',
+        comment_text: 'Produto de excelente qualidade',
+      },
+      {
+        author_name: 'João Pedro',
+        comment_text: 'Correspondeu às minha expectativas',
+      },
+    ],
   },
   {
     id: 2,

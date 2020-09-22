@@ -3,5 +3,5 @@ export default {
   light: '#cdcdcd',
   gray: '#666',
   darkOrange: '#ff8c00',
-  primary: '#ff0073',
+  primary: '#00656a',
 };
