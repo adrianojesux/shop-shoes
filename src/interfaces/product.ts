@@ -1,6 +1,6 @@
 export interface Product {
-  principal_image: Image;
-  other_images: Array<Image>;
+  principal_image: string;
+  other_images: Array<string>;
   product_name: string;
   product_description: string;
   price: string | number;
@@ -24,9 +24,4 @@ export enum RateValue {
   tree = 3,
   four = 4,
   five = 5,
-}
-
-export interface Image {
-  src: string;
-  description?: string;
 }
