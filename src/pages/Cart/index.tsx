@@ -40,18 +40,17 @@ const Cart: React.FC = () => {
   }, [products]);
 
   const totalValue = useMemo(() => {
+    let value = 0;
     if (products && products.length > 0) {
-      const value = products.reduce((acc, p) => {
-        if (p.sale_price) {
-          acc.price += p.sale_price;
-          return acc;
+      for (const product of products) {
+        if (product.sale_price) {
+          value += Number(product.sale_price);
+        } else {
+          value += Number(product.price);
         }
-        acc.price += p.price;
-        return acc;
-      });
-      return value.price;
+      }
     }
-    return 0;
+    return value.toFixed(2);
   }, [products]);
 
   const handleBackButton = useCallback(() => {
@@ -117,7 +116,7 @@ const Cart: React.FC = () => {
           </ProductItem>
         ))}
 
-      <TotalPrice>Total: {totalValue}</TotalPrice>
+      <TotalPrice>Total: R$ {totalValue}</TotalPrice>
       <ButtonCheckout onPress={handleCheckout}>
         <ButtonCheckoutTitle>Fechar Compra</ButtonCheckoutTitle>
       </ButtonCheckout>

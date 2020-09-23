@@ -43,7 +43,7 @@ const CardProduct: React.FC<CardProductProps> = ({product}) => {
           <MDIcon name="star" size={22} color={theme.light} />
         </ContentStars>
         <ProductName>{product.product_name}</ProductName>
-        <ProductPrice>R$ {product.price}</ProductPrice>
+        <ProductPrice>R$ {product.price.toFixed(2)}</ProductPrice>
       </ProductBody>
     </Container>
   );

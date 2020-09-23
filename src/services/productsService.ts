@@ -5,8 +5,8 @@ const products: Product[] = [
     id: 1,
     product_name: 'Tenis Adidas',
     product_description: 'Tenis de alta qualidade para os melhores clientes.',
-    price: '150.50',
-    sale_price: '120.50',
+    price: 150.5,
+    sale_price: 120.5,
     principal_image:
       'https://static.netshoes.com.br/produtos/tenis-de-caminhada-leve-confortavel/06/E74-0492-006/E74-0492-006_zoom1.jpg?ts=1586961574&ims=544x',
     other_images: [
@@ -29,7 +29,7 @@ const products: Product[] = [
     id: 2,
     product_name: 'Tenis Nike',
     product_description: 'Tenis de alta qualidade para os melhores clientes.',
-    price: '150.50',
+    price: 150.5,
     principal_image:
       'https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/36/HZM-1731-036/HZM-1731-036_zoom1.jpg?ts=1569489111?ims=544x',
     other_images: [
@@ -43,7 +43,7 @@ const products: Product[] = [
     id: 3,
     product_name: 'Tenis Nike',
     product_description: 'Tenis de alta qualidade para os melhores clientes.',
-    price: '150.50',
+    price: 150.5,
     principal_image:
       'https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/36/HZM-1731-036/HZM-1731-036_zoom1.jpg?ts=1569489111?ims=544x',
     other_images: [
@@ -57,7 +57,7 @@ const products: Product[] = [
     id: 4,
     product_name: 'Tenis Nike',
     product_description: 'Tenis de alta qualidade para os melhores clientes.',
-    price: '150.50',
+    price: 150.5,
     principal_image:
       'https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/36/HZM-1731-036/HZM-1731-036_zoom1.jpg?ts=1569489111?ims=544x',
     other_images: [
@@ -71,7 +71,7 @@ const products: Product[] = [
     id: 5,
     product_name: 'Tenis Nike',
     product_description: 'Tenis de alta qualidade para os melhores clientes.',
-    price: '150.50',
+    price: 150.5,
     principal_image:
       'https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/36/HZM-1731-036/HZM-1731-036_zoom1.jpg?ts=1569489111?ims=544x',
     other_images: [
