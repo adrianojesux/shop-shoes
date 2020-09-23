@@ -16,8 +16,7 @@ const reducer: Reducer<CartState> = (state = INITIAL_STATE, action) => {
         return draft;
       case CartActionTypes.REMOVE_PRODUCT:
         const index = draft.data.findIndex((p) => p.id === action.payload.data);
-        const data = draft.data.splice(index, 1);
-        draft.data = data;
+        draft.data.splice(index, 1);
         return draft;
       case CartActionTypes.CLEAR_CART:
         draft.data = [];

@@ -7,7 +7,7 @@ import {ApplicationState} from '../../store';
 import theme from '../../utils/theme';
 import {formatCurrency} from '../../utils/formatter';
 
-import {remodeProduct, clearCart} from './../../store/ducks/cart/actions';
+import {removeProduct, clearCart} from './../../store/ducks/cart/actions';
 
 import {
   Container,
@@ -26,6 +26,7 @@ import {
   ButtonClearCart,
   ButtonClearCartText,
 } from './styles';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const Cart: React.FC = () => {
   const navigation = useNavigation();
@@ -64,7 +65,7 @@ const Cart: React.FC = () => {
   }, []);
 
   const handleRemoveProduct = useCallback((product_id: number) => {
-    dispatch(remodeProduct(product_id));
+    dispatch(removeProduct(product_id));
   }, []);
 
   const handleClearCart = useCallback(() => {
@@ -106,12 +107,10 @@ const Cart: React.FC = () => {
               </ProductPrice>
             </ProductInformations>
             <ProductAction>
-              <MDIcon
-                name="delete-outline"
-                size={22}
-                color={theme.gray}
-                onPress={() => handleRemoveProduct(Number(product.id))}
-              />
+              <TouchableOpacity
+                onPress={() => handleRemoveProduct(Number(product.id))}>
+                <MDIcon name="delete-outline" size={22} color={theme.gray} />
+              </TouchableOpacity>
             </ProductAction>
           </ProductItem>
         ))}
