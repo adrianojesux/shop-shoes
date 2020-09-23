@@ -17,13 +17,13 @@ import route_names from '../../utils/route_names';
 
 interface CardProductProps {
   product: Product;
+  onTap?: (product_id: number) => void;
 }
 
-const CardProduct: React.FC<CardProductProps> = ({product}) => {
-  const navigation = useNavigation();
-
+const CardProduct: React.FC<CardProductProps> = ({product, onTap}) => {
   function handleOpenPageDetail() {
-    navigation.navigate(route_names.DETAILS, {product_id: product.id});
+    if (onTap) onTap(Number(product.id));
+    //navigation.navigate(route_names.DETAILS, {product_id: product.id});
   }
 
   return (

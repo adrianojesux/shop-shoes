@@ -9,6 +9,7 @@ import ProductService from './../../services/productsService';
 import {Container, Sorter, SorterTitle} from './styles';
 import theme from './../../utils/theme';
 import {useNavigation} from '@react-navigation/native';
+import route_names from '../../utils/route_names';
 
 const Home: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -24,7 +25,7 @@ const Home: React.FC = () => {
   }, []);
 
   const handleNavigateToCart = useCallback(() => {
-    navigation.navigate('cart');
+    navigation.navigate(route_names.CART);
   }, []);
 
   const handleOnSearch = useCallback((query: string) => {
@@ -41,6 +42,10 @@ const Home: React.FC = () => {
     setSearching(false);
     Keyboard.dismiss();
   }, []);
+
+  function handleOpenPageDetail(product_id: number) {
+    navigation.navigate(route_names.DETAILS, {product_id});
+  }
 
   return (
     <Container>
@@ -66,6 +71,7 @@ const Home: React.FC = () => {
                   console.log(value);
                 }}>
                 <Picker.Item label="Menor Preço" value="meno-preco" />
+                <Picker.Item label="Menor Preço" value="maior-preco" />
               </Picker>
             </Sorter>
             <FlatList
@@ -73,7 +79,9 @@ const Home: React.FC = () => {
               data={products}
               numColumns={2}
               keyExtractor={(item) => String(item.id)}
-              renderItem={({item}) => <CardProduct product={item} />}
+              renderItem={({item}) => (
+                <CardProduct product={item} onTap={handleOpenPageDetail} />
+              )}
               showsVerticalScrollIndicator={false}
               onEndReachedThreshold={0.2}
               contentContainerStyle={{paddingBottom: 5}}
@@ -85,7 +93,9 @@ const Home: React.FC = () => {
             key="product-list"
             data={productsFiltered}
             keyExtractor={(item) => String(item.id)}
-            renderItem={({item}) => <CardProduct product={item} />}
+            renderItem={({item}) => (
+              <CardProduct product={item} onTap={handleOpenPageDetail} />
+            )}
             showsVerticalScrollIndicator={false}
             onEndReachedThreshold={0.2}
             contentContainerStyle={{paddingBottom: 5}}

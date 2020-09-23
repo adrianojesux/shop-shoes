@@ -109,6 +109,9 @@ class ProductService {
    * @memberof ProductService
    */
   findByName(name: string): Product[] {
+    if (!name || name.trim() === '') {
+      return [];
+    }
     return products.filter(
       (p) =>
         p.product_name.toLowerCase().startsWith(name.toLowerCase()) ||
